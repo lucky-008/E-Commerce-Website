@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import HomeBanner from "../../components/HomeBanner";
 import banner1 from "../../assets/images/banner1.jpg";
 import banner2 from "../../assets/images/banner2.jpg";
@@ -19,23 +19,23 @@ import banner4 from "../../assets/images/banner4.jpg";
 import Rating from '@mui/material/Rating';
 import { AiOutlineFullscreenExit } from "react-icons/ai";
 
+
 import { FaRegHeart } from "react-icons/fa6";
-import ProductModel from '../productmodel';
-const HomeProduct = () => {
-    const [isOpenProductModal,setisOpenProductModal]= useState(false);
+import { MyContext } from '../../App';
+
+const HomeProduct = (props) => {
+    const context = useContext(MyContext);
+    
   const viewProduct=(id)=>{
     console.log("clicked")
-    setisOpenProductModal(true);
+    context.setisOpenProductModal(true);
 
   }
-   const closeProductModal=()=>{
-    setisOpenProductModal(false);
-   }
-
-    
+  
+  console.log(props,"props")  
   return (
    <>
-   <section className="homeProducts">
+   <section className="homeProducts ">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-3">
@@ -71,7 +71,7 @@ const HomeProduct = () => {
                                     modules={[Navigation]}
                                     className="mySwiper">
                                     <SwiperSlide>
-                                        <div className="item productItems">
+                                        <div className={`productItems ${props.itemView}`}>
                                             <div className="imgWrapper">
                                                 <img src={img1} className="w-100" />
                                                 <span className="badge badge-primary">20%</span>
@@ -93,7 +93,7 @@ const HomeProduct = () => {
 
                                         </div></SwiperSlide>
                                     <SwiperSlide>
-                                        <div className="item productItems">
+                                        <div className={`productItems ${props.itemView}`}>
                                             <div className="imgWrapper">
                                                 <img src={img2} className="w-100" />
                                                 <span className="badge badge-primary">20%</span>
@@ -114,7 +114,7 @@ const HomeProduct = () => {
 
                                         </div>
                                     </SwiperSlide>
-                                    <SwiperSlide><div className="item productItems">
+                                    <SwiperSlide><div className= {`productItems ${props.itemView}`}>
                                         <div className="imgWrapper">
                                             <img src={img3} className="w-100" />
                                             <span className="badge badge-primary">20%</span>
@@ -134,7 +134,7 @@ const HomeProduct = () => {
                                         </div>
 
                                     </div></SwiperSlide>
-                                    <SwiperSlide><div className="item productItems">
+                                    <SwiperSlide><div className={`productItems ${props.itemView}`}>
                                         <div className="imgWrapper">
                                             <img src={img4} className="w-100" />
                                             <span className="badge badge-primary">20%</span>
@@ -193,9 +193,7 @@ const HomeProduct = () => {
                                 <Swiper
                                     slidesPerView={4}
                                     spaceBetween={0}
-                                    pagination={{
-                                        clickable: true,
-                                    }}
+                                    navigation={false}
                                     modules={[Navigation]}
                                     className="mySwiper">
                                     <SwiperSlide>
@@ -326,10 +324,7 @@ const HomeProduct = () => {
                     </div>
                 </div>
             </section>
-    {
-        isOpenProductModal===true && <ProductModel closeProductModal={closeProductModal} modalVal={isOpenProductModal}/>
-        
-    }
+  
 
   
    </>
