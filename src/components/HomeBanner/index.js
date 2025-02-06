@@ -19,6 +19,7 @@ const HomeBanner = () => {
         
     };
     return (
+        <div className="container">
 
          <div className="homeBannerSection">
             <Slider {...settings}>
@@ -45,6 +46,7 @@ const HomeBanner = () => {
        
         </Slider >
         </div> 
+        </div>
       
 
     )
