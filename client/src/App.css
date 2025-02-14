@@ -4,12 +4,13 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css");
 .container, .container-lg, .container-md, .container-sm, .container-xl{max-width: 1200px;}
 .bg-blue{background: #233a95}
+.btn-blue svg{font-size: 20px;}
 .badge{display: inline-block;padding: 7px 10px;}
 .badge.bg-success{background: #e5f8ed !important;color: #16b858 !important; text-align: left !important;}
 .cursor{cursor:pointer;}
 button{text-transform: capitalize !important;}
 .btn-blue{background: #233a95 !important;color:#fff !important; text-transform: capitalize !important;}
-.btn-big{font-size: 14px !important;padding: 7px 20px !important;}
+.btn-big{font-size: 14px !important;padding: 7px 20px !important; font-weight: bold !important;}
 .btn-round{border-radius: 30px !important;}
 .btn-sml{font-size: 13px !important; color: #000;}
 .btn-sml svg{font-size: 20px;}
@@ -27,7 +28,7 @@ body{font-family: "Lato" , sans-serif; font-size: 14px; color: azure; font-weigh
 .headerWrapper.header .part2 .info .label{font-size: 8px!important;text-transform: capitalize !important; color: rgb(83, 10, 10)!important;line-height: 16px;}
 .headerWrapper .header .part2 .country-dropdown .name{font-size: 10x!important;text-transform: capitalize !important; color: black; font-weight: 700; line-height: 16px;}
 .headerWrapper .header .part2 .country-dropdown span.ml-auto svg{opacity: 0.7;}
-.header-search{width: 60%;height: 50px; background: #f3f4f7;padding: 10px;position: relative;margin-left: 20px;margin-right: 20px;border-radius: 10px;border: 1px solid rgba(0,0,0,0.1);}
+.header-search{width: 55%;height: 50px; background: #f3f4f7;padding: 10px;position: relative;margin-left: 20px;margin-right: 20px;border-radius: 10px;border: 1px solid rgba(0,0,0,0.1);}
 .header-search input{width:100%;background: transparent; outline:none ;height:30px !important; font-size: 15px;color:rgba(0, 0, 0, 0.8);border:0px;padding:0px 2px;}
 .header-search button{position: absolute; top: 10px; right: 15px;z-index: 100;min-width: 40px;height: 40px;width: 40px; border-radius:50% ;color:#000;}
 .header .part3 .circle{align-items: center; justify-content: center; min-width: 50px;height: 50px; width: 50px;border-radius: 50%; border: 1px solid rgba(0,0,0,0.1);color:#000;}
@@ -138,10 +139,10 @@ footer .linksWrap h5{font-size: 15px;font-weight: 600;margin-bottom: 20px;}
 footer .linksWrap  ul li{list-style:none;margin-bottom: 10px;}
 footer .linksWrap  ul li a{color: #717070; font-size: 13px;}
 footer .linksWrap ul li a:hover{text-decoration: none;}
-footer .copyright ul li a{display: flex;align-items: center;justify-content: center;height: 35px;width: 35px;border-radius: 50%;border: 1px solid rgba(0,0,0,0.2);}
-footer .copyright ul li a svg{font-size: 16px;color:rgba(0, 0, 0, 0.8)}
-footer .copyright ul li a:hover{background: #2bbef9;}
-footer .copyright ul li a:hover svg{color: #fff;}
+.socials  li a{display: flex;align-items: center;justify-content: center;height: 35px;width: 35px;border-radius: 50%;border: 1px solid rgba(0,0,0,0.2);}
+.socials  li a svg{font-size: 16px;color:rgba(0, 0, 0, 0.8)}
+.socials  li a:hover{background: #2bbef9;}
+.socials  li a:hover svg{color: #fff;}
 .productModal .MuiPaper-elevation{padding: 25px;position: relative;max-width: 900px;width: 900px !important; }
 .productModal h4{font-size: 20px !important;color: rgba(0, 0, 0, 0.8) !important;}
 .productZoom{width: 100%;height: auto;border: 1px solid rgba(0,0,0,0.1);padding: 0px; overflow: hidden ;border-radius: 15px;}
@@ -322,6 +323,36 @@ footer .copyright ul li a:hover svg{color: #fff;}
 .reviewForm .form-group textarea.form-control{height: 200px;padding-top: 25px;}
 .progressBarBox{margin-bottom: 10px;}
 .progress-bar{font-size: 16px;}
+.cartPage .table thead{background: #ececec; overflow: hidden;}
+.cartPage .table thead th{ border: 0px !important;}
+.cartPage .table thead th:first-child{border-top-right-radius: 10px; border-top-left-radius: 10px;}
+.cartPage .table thead th:last-child{border-top-right-radius: 10px; border-top-left-radius: 10px}
+.cartItemimgWrapper{width: 380px;}
+.cartItemimgWrapper .imgWrapper{width: 100px; overflow: hidden;}
+.cartItemimgWrapper .info a:hover{text-decoration: none;}
+.text-red{color: #e74c3c}
+.text-blue{color: #233a95;}
+
+.cartItemimgWrapper .info h6{color: #343434; font-weight: bold;}
+.cartItemimgWrapper .info h6:hover{color: #16b858;}
+.remove{cursor: pointer;}
+.remove svg{font-size: 25px;}
+.remove:hover svg{color: #e74c3c;}
+ .cartPage .quantityDrop button{zoom: 75%;}
+ .cartPage table th, .cartPage table td{vertical-align: middle; border-top: 0px; border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
+ .cartPage table tbody tr:hover{background: #f1f1f1;}
+ .cartDetails{border: 0px ; border-radius: 7px; position: sticky; top: 20px;}
+ .cartDetails h3{ font-size: 18px ; font-weight: 600; border-bottom:  1px solid rgba(0, 0, 0, 0.1); padding-bottom: 15px;}
+ .signInPage{height: 100vh; width: 100%;position: relative; overflow: hidden;}
+ .signInPage .shape-bottom{position: absolute; top: auto; bottom: -6px; left: 0; right: 0; z-index: 1;}
+ .signInPage::after{position: absolute; content: ''; height: 100%; width: 100%; top: 0; left: 0; background-image: linear-gradient(#1e3d81 ,#2334a3); opacity: 0.9; z-index: -1;}
+.signInPage  .box{ width: 400px; height: auto; background: #fff; margin: auto;}
+.signInPage  .box h2{font-size: 25px; font-weight: 600;}
+.signInPage  .box img{max-width: 300px;}
+.signInPage  .box form{padding: 20px 30px;}
+.signInPage .box .form-group{margin-bottom: 20px;}
+.signInPage .box .txt{font-size: 14px; font-weight: bold;}
+.signUpPage .box{width: 500px;}
 
 
 
