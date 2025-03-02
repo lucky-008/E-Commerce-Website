@@ -51,9 +51,11 @@ const Header = () => {
                                     {
                                         context.isLogin !== true ? (
                                             <Link to="/signIn">
-                                                <Button className="btn-blue btn-big btn-round mr-3">Sign In</Button>
+                                                <Button className="btn-blue btn-big btn-round mr-3 " >Sign In</Button>
                                             </Link>
+                                            
                                         ) : (
+                                           
                                             <Button className="circle">
                                                 <FaRegCircleUser />
                                             </Button>
@@ -63,7 +65,8 @@ const Header = () => {
                                     <div className='ml-auto cart-items d-flex align-items-center'>
                                         <div className='price'>$3.38</div>
                                         <div className='position-relative ml-2'>
-                                            <Button className='circle' ><MdOutlineShoppingCart /></Button>
+                                        <Link to="/cart/:id">
+                                            <Button className='circle' ><MdOutlineShoppingCart /></Button></Link>
                                             <span className='count d-flex align-items-center justify-content-center'>1</span>
                                         </div>
                                     </div>

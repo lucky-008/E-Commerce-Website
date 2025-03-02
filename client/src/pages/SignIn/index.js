@@ -15,6 +15,11 @@ const SignIn = () => {
 
     useEffect(() => {
         context.setisHeaderFooterShow(false);
+
+        return ()=>{
+            context.setisHeaderFooterShow(true);
+        }
+
     }, [context]);
 
     return (
