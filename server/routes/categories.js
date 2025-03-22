@@ -13,12 +13,39 @@ cloudinary.config({
 
 // GET route to fetch all categories
 router.get(`/`, async (req, res) => {
-    try {
-        const categoryList = await Category.find();
+    try {;
+
+
+
+        const page = parseInt(req.query.page) ||1;
+        const perPage = 6;
+        const totalPosts = await Category.countDocuments();
+        const totalPages = Math.ceil(totalPosts/perPage);
+
+
+        if (page > totalPages)
+        {
+            return res.status(404).json({ success: false, message: 'pages not  found' });
+        }
+        const categoryList = await Category.find()
+        .skip((page-1)*perPage)
+        .limit(perPage)
+        .exec();
+
+
+
+
+
+
         if (!categoryList || categoryList.length === 0) {
             return res.status(404).json({ success: false, message: 'No categories found' });
         }
-        res.status(200).json(categoryList);
+        res.status(200).json({
+            
+            "categoryList": categoryList,
+        "totalPages":totalPages,
+    "page":page
+    });
     } catch (err) {
         res.status(500).json({ success: false, error: err.message });
     }
