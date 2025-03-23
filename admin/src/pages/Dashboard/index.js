@@ -18,6 +18,7 @@ import { MdDelete } from "react-icons/md";
 import skirts from '../../assets/images/skirts.jpg'
 import Pagination from '@mui/material/Pagination';
 import { MyContext } from "../../App";
+import axios from 'axios';
 
 
 
@@ -26,7 +27,7 @@ import Menu from '@mui/material/Menu';
 
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchDataFromApi } from "../../utils/api";
+import { deleteData, fetchDataFromApi } from "../../utils/api";
 
 const label= {inputProps :{'arial-label': 'Checkbox demo'}}
 
@@ -58,11 +59,59 @@ const Dashboard= () => {
         context.setisHideSidebarAndHeader(false);
         
         fetchDataFromApi("/api/products").then((res)=>{
-            setProductList(res);
+            if(res.length>0){
+                setProductList(res);
+            }else{
+                setProductList([]);
+            }
+           
 
         })
     },[])
 
+    const delProduct = (id) => {
+        // Set progress to 40% while deletion is in progress
+        context.setProgress(40);
+    
+        // Attempt to delete the product
+        deleteData(`/api/products/${id}`)
+            .then((res) => {
+             
+                context.setProgress(100);
+    
+                context.setAlertBox({
+                    open: true,
+                    error: false, 
+                    msg: "Product deleted successfully",
+                });
+    
+                // Fetch the updated list of products
+                fetchDataFromApi("/api/products")
+                    .then((res) => {
+                        setProductList(res); // Update the product list with the new data
+                    })
+                    .catch((err) => {
+                        // Handle error in fetching product list
+                        context.setAlertBox({
+                            open: true,
+                            error: true,
+                            msg: "Failed to fetch products after deletion",
+                        });
+                    });
+            })
+            .catch((err) => {
+                // Set progress to 100% after deletion attempt, even if failed
+                context.setProgress(100);
+    
+                // Show error message if deletion fails
+                context.setAlertBox({
+                    open: true,
+                    error: true,
+                    msg: "Failed to delete product. Please try again.",
+                });
+            });
+    };
+    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -274,15 +323,15 @@ const Dashboard= () => {
                             </thead>
                             <tbody>
                                 {
-                                    productList?.length!==0 && productList?.map((item,index)=>{
+                                    productList?.length>=0 && productList?.map((item,index)=>{
                                         return(
                                             <tr>
                                            
                                             <td><div className="d-flex align-items-center productBox">
                                                 <div className="imgWrapper">
                                                     <div className="img card shadow m-0" >
-                                                        {/* <img src={`${context.baseUrl}/uploads/${item.images[0]}`} className="w-100"></img> */}
-                                                        <img src={`${item.images[0]}`} className="w-100"></img>
+                                                        <img src={`${context.baseUrl}uploads/${item.images[0]}`} className="w-100"></img>
+                                                        {/* <img src={`${item.images[0]}`} className="w-100"></img> */}
                                                     </div>
                                                 </div>
                                                 <div className="info">
@@ -302,7 +351,7 @@ const Dashboard= () => {
                                                   <Link to="/product/details">
                                                   <Button  className="secondary" color="secondary"><FaEye/></Button></Link>
                                                     <Button className="success" color="success"><FaPencilAlt/></Button>
-                                                    <Button  className="error"color="error"><MdDelete/></Button>
+                                                    <Button  className="error"color="error" onClick={()=>delProduct(item.id)}><MdDelete/></Button>
                                                 </div>
                                             </td>
                                         </tr>

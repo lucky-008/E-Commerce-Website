@@ -3,9 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 require('dotenv/config');
 app.use(cors());
 app.options('*', cors());
+app.use('/uploads', express.static(path.join(__dirname, 'routes', 'uploads')));
 app.use(bodyParser.json()); // Corrected function call
 const categoryRoutes = require('./routes/categories');
 const productRoutes = require('./routes/products');
